@@ -1,34 +1,34 @@
+def calcular_imc_interpretar_e_sugerir():
+    peso = float(input("Digite o seu peso (em kg): "))
+    altura = float(input("Digite a sua altura (em metros): "))
 
-x = float(input("Digite um peso: "))
-y = float(input("Digite uma altura: "))
+    if peso <= 0 or altura <= 0:
+        print("Peso e altura devem ser números válidos e positivos.")
+        return
 
-calculadora_de_imc = x / (y * y)
-print("O IMC é:", calculadora_de_imc)
+    imc = peso / (altura * altura)
 
-if calculadora_de_imc < 18.5:
-    print("Abaixo do peso")
-    peso_saudavel = 18.5 * (y * y)
-    peso_a_perder = x - peso_saudavel
-    print("Para estar saudável, você precisa perder aproximadamente:", peso_a_perder, "kg")
-elif 18.5 <= calculadora_de_imc < 24.9:
-    print("Peso normal")
-elif 25.0 <= calculadora_de_imc < 29.9:
-    print("Sobrepeso")
-    peso_saudavel = 24.9 * (y * y)
-    peso_a_perder = x - peso_saudavel
-    print("Para estar saudável, você precisa perder aproximadamente:", peso_a_perder, "kg")
-elif 30.0 <= calculadora_de_imc < 34.9:
-    print("Obesidade grau 1")
-    peso_saudavel = 24.9 * (y * y)
-    peso_a_perder = x - peso_saudavel
-    print("Para estar no peso normal, você precisa perder aproximadamente:", peso_a_perder, "kg")
-elif 35.0 <= calculadora_de_imc < 39.9:
-    print("Obesidade grau 2 (severa)")
-    peso_saudavel = 24.9 * (y * y)
-    peso_a_perder = x - peso_saudavel
-    print("Para estar no peso normal, você precisa perder aproximadamente:", peso_a_perder, "kg")
-else:
-    print("Obesidade grau 3 (mórbida)")
-    peso_saudavel = 24.9 * (y * y)
-    peso_a_perder = x - peso_saudavel
-    print("Para estar no peso normal, você precisa perder aproximadamente:", peso_a_perder, "kg")
+    if imc < 18.5:
+        classificacao = "Abaixo do Peso"
+        peso_ideal = 18.5 * (altura * altura)
+        diferenca_peso = peso_ideal - peso
+        sugestao = f"Para alcançar um peso saudável, você precisa ganhar aproximadamente {diferenca_peso:.2f} kg."
+    elif imc < 25:
+        classificacao = "Peso Normal"
+        sugestao = "Seu peso está dentro da faixa saudável."
+    elif imc < 30:
+        classificacao = "Acima do Peso"
+        peso_ideal = 24.9 * (altura * altura)
+        diferenca_peso = peso - peso_ideal
+        sugestao = f"Para alcançar um peso saudável, você precisa perder aproximadamente {diferenca_peso:.2f} kg."
+    else:
+        classificacao = "Obeso"
+        peso_ideal = 24.9 * (altura * altura)
+        diferenca_peso = peso - peso_ideal
+        sugestao = f"Para alcançar um peso saudável, você precisa perder aproximadamente {diferenca_peso:.2f} kg."
+
+    print(f"Seu IMC é: {imc:.2f}")
+    print(f"Você é classificado como: {classificacao}")
+    print(sugestao)
+
+calcular_imc_interpretar_e_sugerir()
